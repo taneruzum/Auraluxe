@@ -1,51 +1,26 @@
+import { NavLinks } from '@/Constants/navLinks';
 import React from 'react';
-import './NavBar.css'; // CSS dosyasını dahil ettik
-import { FaUserCircle, FaShoppingCart, FaSearch } from 'react-icons/fa'; // Arama ikonu dahil ettik
-//import logoImage from '../../../src/images/auraluxe.png';
+import { FaUserCircle, FaShoppingCart, FaSearch } from 'react-icons/fa';
 
 export default function NavBar() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <div className="d-flex align-items-center w-100"> {/* Esnek konteyner ile yerleştirme */}
-
-        {/* Arama ikonu ve arama alanı */}
-        <div className="search-container">
-          <FaSearch className="search-icon" />
-          <input type="text" placeholder="Ürün arama..." className="search-input" />
+    <nav className="fixed z-50 top-0 left-0 w-full h-fit  bg-green-500">
+      <div className='max-w-screen-2xl mx-auto min-h-16 py-2 px-4 flex items-center justify-between'>
+        <div className='relative'>
+          <FaSearch className='absolute left-2 top-1/2 -translate-y-1/2 text-[#a3a3a3]' />
+          <input type="text" name="" id="" className='w-full text-sm px-8 py-2 rounded-md border outline-none shadow' />
         </div>
-
-        <a className="navbar-brand mx-auto" href="#">
-          {/* <img src={logoImage} alt="Auraluxe" className="logo-img" /> */}
-        </a>
-
-
-        {/* Profil ve Alışveriş Sepeti İkonları */}
-        <div className="icons">
-          <a href="#" className="nav-link">
-            <FaUserCircle size={24} />
-          </a>
-          <a href="#" className="nav-link">
-            <FaShoppingCart size={24} />
-          </a>
-        </div>
-      </div>
-
-      {/* Dropdown menü */}
-      <div className="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul className="navbar-nav">
-          <li className="nav-item dropdown">
-            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Diğer Sayfalar
+        <figure>
+          {/* <img src="" alt="" /> */}
+          LOGO
+        </figure>
+        <div className='flex gap-3 *:px-2 *:py-1'>
+          {NavLinks.map((link, index) => (
+            <a key={index} href={link.url}>
+              {link.title}
             </a>
-            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a className="dropdown-item" href="#">Link 1</a>
-              <a className="dropdown-item" href="#">Link 2</a>
-              <a className="dropdown-item" href="#">Link 3</a>
-              <div className="dropdown-divider"></div>
-              <a className="dropdown-item" href="#">Link 4</a>
-            </div>
-          </li>
-        </ul>
+          ))}
+        </div>
       </div>
     </nav>
   );

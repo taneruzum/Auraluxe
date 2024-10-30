@@ -9,7 +9,7 @@ export default function MainLayout() {
     return (
         <div className='w-full min-h-screen'>
             <NavBar />
-            <div className='w-full min-h-full bg-red-500'>
+            <div className='w-full min-h-full bg-red-200'>
                 <Outlet />
             </div>
             <Footer />
