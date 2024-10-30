@@ -1,0 +1,5 @@
+npm i nodemon
+npm i mongodb
+npm i mongoose
+npm i express
+npm i dotenv
