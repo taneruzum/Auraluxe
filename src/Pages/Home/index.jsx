@@ -1,10 +1,11 @@
-import HeroSectionSwiper from '@/Components/HeroSectionSwiper';
-import React from 'react';
+import HeroSectionSwiper from "@/Components/HeroSectionSwiper";
+import Showcase from "@/Components/Showcase";
 
 export default function HomePage() {
-    return (
-        <div>
-            <HeroSectionSwiper />
-        </div>
-    );
+  return (
+    <div>
+      <HeroSectionSwiper />
+      <Showcase />
+    </div>
+  );
 }

@@ -1,11 +1,10 @@
-
 export const NavLinks = [
-    {
-        title:'Home',
-        url:'/'
-    },
-    {
-        title:'Mağaza',
-        url:'/shopping'
-    },
-]
+  {
+    title: "Home",
+    url: "/",
+  },
+  {
+    title: "Mağaza",
+    url: "/shopping",
+  },
+];

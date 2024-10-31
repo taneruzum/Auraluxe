@@ -1,18 +1,15 @@
-
-import Footer from '@/Components/Footer'
-import NavBar from '../Components/NavBar'
-import React from 'react'
-import { Outlet } from 'react-router-dom'
-
+import Footer from "@/Components/Footer";
+import NavBar from "../Components/NavBar";
+import { Outlet } from "react-router-dom";
 
 export default function MainLayout() {
-    return (
-        <div className='w-full min-h-screen'>
-            <NavBar />
-            <div className='w-full min-h-full bg-red-200'>
-                <Outlet />
-            </div>
-            <Footer />
-        </div>
-    )
+  return (
+    <div className="min-h-screen w-full">
+      <NavBar />
+      <div className="min-h-full w-full bg-red-200">
+        <Outlet />
+      </div>
+      <Footer />
+    </div>
+  );
 }
