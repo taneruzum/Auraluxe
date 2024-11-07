@@ -1,0 +1,35 @@
+/* HomePage.css */
+
+.page-container {
+  background-color: white !important;
+  min-height: 100vh; /* Sayfanın tamamını kapsar */
+}
+
+.video-container {
+  position: relative; /* Butonun konumlandırılmasında yardımcı olur */
+  width: 100%;
+  max-width: 1500px; /* Videonun daha geniş görünmesi için ayarlandı */
+  margin: 20px auto; /* Yukarıdan boşluk ve merkezleme */
+  border-radius: 8px; /* Köşeleri hafif yuvarlatır */
+  overflow: hidden; /* Yuvarlak köşeleri düzgün göstermek için */
+}
+
+video {
+  width: 100%;
+  height: auto; /* Yüksekliği otomatik ayarlar */
+  aspect-ratio: 16 / 9; /* Yatayda daha geniş bir oran */
+  display: block; /* Alt boşlukları kaldırır */
+}
+
+.mute-button {
+  position: absolute; /* Butonun konumlandırılması için */
+  bottom: 10px; /* Videonun altına doğru konumlandır */
+  right: 10px; /* Sağdan 10 piksel */
+  background-color: rgba(16, 16, 16, 0.7); /* Yarı şeffaf arka plan */
+  color: rgb(238, 234, 234); /* Buton metni rengi */
+  border: none; /* Kenarlık yok */
+  padding: 5px 10px; /* İç boşluk */
+  cursor: pointer; /* İmleç */
+  border-radius: 5px; /* Kenar yuvarlama */
+  z-index: 10; /* Butonun diğer öğelerin üstünde görünmesi için */
+}
