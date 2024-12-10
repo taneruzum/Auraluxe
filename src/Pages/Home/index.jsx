@@ -4,6 +4,8 @@ import { useRef, useState } from "react";
 import videoSrc from "@/images/bb.mp4"; // Video dosyasını içe aktar
 import Trend from "@/Components/trend";
 import ProductCardsSwiper from "@/Components/ProductCardsSwiper";
+import Decor from "@/Components/Decor";
+import Decor2 from "@/Components/Decor2";
 
 export default function HomePage() {
   const videoRef = useRef(null); // Video referansı
@@ -44,6 +46,11 @@ export default function HomePage() {
       <Showcase />
       <Trend />
       <ProductCardsSwiper />
+      <Decor />
+
+      <div className="content-container mx-auto max-w-7xl px-8 py-4">
+        <Decor2 />
+      </div>
     </div>
   );
 }

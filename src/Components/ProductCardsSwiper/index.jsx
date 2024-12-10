@@ -6,14 +6,14 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 const imagePaths = [
-  "SwiperImages/1920x1080.png",
-  "SwiperImages/1920x1080v2.png",
-  "SwiperImages/1920x1080.png",
-  "SwiperImages/1920x1080v2.png",
-  "SwiperImages/1920x1080.png",
-  "SwiperImages/1920x1080v2.png",
-  "SwiperImages/1920x1080.png",
-  "SwiperImages/1920x1080v2.png",
+  "../../../public/SwiperImages/yüzük1.jpg",
+  "../../../public/SwiperImages/yüzük2.jpg",
+  "../../../public/SwiperImages/bileklik1.jpg",
+  "../../../public/SwiperImages/kolye1.jpg",
+  "../../../public/SwiperImages/saat1.jpg",
+  "../../../public/SwiperImages/küpe1.jpg",
+  "../../../public/SwiperImages/kolye2.jpg",
+  "../../../public/SwiperImages/yüzük3.jpg",
 ];
 
 export default function ProductCardsSwiper() {

@@ -12,11 +12,7 @@ export default function Showcase() {
           key={index}
           className="relative max-w-[400px] overflow-hidden rounded-md md:max-w-[220px] lg:max-w-[300px] xl:max-w-[400px]"
         >
-          <div className="pointer-events-none absolute inset-0 z-10 flex h-full w-full items-end justify-center bg-black/40 py-10">
-            <span className="z-20 text-2xl font-medium uppercase tracking-wider text-generalWhite">
-              Title
-            </span>
-          </div>
+          <div className="pointer-events-none absolute inset-0 z-10 flex h-full w-full items-end justify-center bg-black/40 py-10"></div>
           <img
             src={path}
             alt={`Showcase Image ${index}`}
