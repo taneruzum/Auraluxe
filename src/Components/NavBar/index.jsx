@@ -19,21 +19,21 @@ export default function NavBar() {
         </div>
 
         {/* Logo */}
-        <figure>
+        <a href="/">
           <img src={logo} alt="Auraluxe Jewelry Logo" />
-        </figure>
+        </a>
 
         {/* Sağ Bölüm */}
-        <section className="flex items-center gap-4 text-[#a3a3a3]">
+        <section className="flex items-center gap-4 text-coalBlue">
           <FaUserCircle className="size-4" />
           <FaShoppingCart className="size-4" />
 
           {/* Navigasyon Linkleri */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 ">
             {NavLinks.map((link, index) =>
               link.isButton ? (
                 <Link key={index} to={link.url}>
-                  <button className="rounded-xl bg-[#A3A3A3] px-4 py-2 text-sm text-white shadow hover:bg-[#696969]">
+                  <button className="rounded-xl bg-coalBlue/80 px-4 py-2 text-sm text-white shadow hover:bg-coalBlue transition-colors ">
                     {link.title}
                   </button>
                 </Link>
@@ -41,7 +41,7 @@ export default function NavBar() {
                 <Link
                   key={index}
                   to={link.url}
-                  className="px-2 py-1 text-sm text-[#a3a3a3] hover:text-black"
+                  className="px-2 py-1 text-sm text-coalBlue hover:text-black transition-colors"
                 >
                   {link.title}
                 </Link>

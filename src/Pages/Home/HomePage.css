@@ -5,15 +5,6 @@
   min-height: 100vh; /* Sayfanın tamamını kapsar */
 }
 
-.video-container {
-  position: relative; /* Butonun konumlandırılmasında yardımcı olur */
-  width: 100%;
-  max-width: 1500px; /* Videonun daha geniş görünmesi için ayarlandı */
-  margin: 20px auto; /* Yukarıdan boşluk ve merkezleme */
-  border-radius: 8px; /* Köşeleri hafif yuvarlatır */
-  overflow: hidden; /* Yuvarlak köşeleri düzgün göstermek için */
-}
-
 video {
   width: 100%;
   height: auto; /* Yüksekliği otomatik ayarlar */

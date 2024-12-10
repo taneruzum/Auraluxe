@@ -1,15 +1,15 @@
 const SignUp = () => {
   return (
-    <div className="mt-28 flex min-h-[90vh] items-center justify-center bg-gray-50">
-      <div className="flex w-full max-w-7xl overflow-hidden rounded-lg bg-white shadow-lg">
+    <div className="w-full flex items-center justify-center ">
+      <div className="flex w-full max-w-screen-lg overflow-hidden bg-white rounded-lg  shadow-lg">
         {/* Sol Taraf: Görsel */}
-        <div
-          className="hidden h-[90vh] w-1/2 bg-cover bg-center lg:block"
-          style={{ backgroundImage: "url('/decor/kayıt.jpg')" }}
-        ></div>
+        
+        <figure className="w-full rounded-lg rounded-r-3xl overflow-hidden">
+          <img src="/decor/kayıt.jpg" alt="Kayıt Ol Yan Resim" />
+        </figure>
 
         {/* Sağ Taraf: Kayıt Ol Formu */}
-        <div className="flex w-full flex-col justify-center p-12 lg:w-1/2">
+        <div className="flex w-full flex-col justify-center px-6">
           <h2 className="text-center text-4xl font-bold text-[#F1C6D1]">
             Sign Up
           </h2>

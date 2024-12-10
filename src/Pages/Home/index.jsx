@@ -1,6 +1,6 @@
 import "./HomePage.css";
 import Showcase from "@/Components/Showcase";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import videoSrc from "@/images/bb.mp4"; // Video dosyasını içe aktar
 import Trend from "@/Components/trend";
 import ProductCardsSwiper from "@/Components/ProductCardsSwiper";
@@ -18,39 +18,47 @@ export default function HomePage() {
     }
   };
 
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch((error) => {
+        console.error("Video oynatılamadı:", error);
+      });
+    }
+  }, [videoRef]);
+
+
   return (
     <div className="page-container">
-      <div className="video-container">
+      <div className="relative w-full h-full max-h-[720px] overflow-hidden rounded-2xl bg-red-500">
         <video
+          className="w-full h-full object-cover"
+          onClick={(e) => {
+            e.preventDefault(); // Tıklama davranışını engelle
+            e.stopPropagation(); // Olayın yukarı doğru yayılmasını engelle
+          }}
           ref={videoRef}
           src={videoSrc}
-          autoPlay
-          loop
+          autoPlay={true}
+          loop={true}
+          muted={true}
           playsInline
-          controls // Kontrolleri ekleyin
-          style={{
-            width: "100%",
-            height: "auto",
-          }}
+        //controls // Kontrolleri ekleyin
         />
 
         {/* Ses açma/kapama butonu */}
-        <button
+        {/* <button
           onClick={toggleMute}
-          className="mute-button" // CSS sınıfı kullanılıyor
+          className="mute-button" 
         >
-          {isMuted ? "Ses Kapat" : "Ses Aç"} {/* Duruma göre metin değişir */}
-        </button>
+          {isMuted ? "Ses Kapat" : "Ses Aç"}
+        </button> */}
       </div>
 
       <Showcase />
       <Trend />
       <ProductCardsSwiper />
       <Decor />
-
-      <div className="content-container mx-auto max-w-7xl px-8 py-4">
-        <Decor2 />
-      </div>
+      <Decor2 />
     </div>
   );
 }

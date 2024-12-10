@@ -6,7 +6,7 @@ const showcaseImages = [
 
 export default function Showcase() {
   return (
-    <div className="mx-auto flex w-full max-w-screen-2xl flex-wrap items-center justify-center gap-6 px-4 py-10 md:justify-between">
+    <div className="mx-auto flex w-full max-w-screen-2xl flex-wrap items-center justify-center gap-6 py-10 md:justify-between">
       {showcaseImages.map((path, index) => (
         <figure
           key={index}

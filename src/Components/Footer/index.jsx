@@ -18,8 +18,11 @@ const Footer = () => {
         />
       </svg>
 
-      <footer className="bg-[#1F2937] py-16 text-white">
-        <div className="container mx-auto px-6 lg:px-12">
+      <footer className="relative bg-coalBlue py-16 text-white">
+        <figure className="hidden 4xl:block absolute right-[4%] top-0 max-w-60">
+          <img src="/decor/logofooter2.png" alt="Footer Logo" />
+        </figure>
+        <div className="max-w-screen-2xl container mx-auto px-6 lg:px-12">
           {/* Upper Section */}
           <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
             {/* Logo and Description */}
