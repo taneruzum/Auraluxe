@@ -3,6 +3,7 @@ import HomePage from "@/Pages/Home";
 import SignInPage from "@/Pages/Sign";
 import { createBrowserRouter } from "react-router-dom";
 import SignUpPage from "@/Pages/SignUp";
+import MagazaPage from "@/Pages/Magaza";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <SignUpPage />,
+      },
+      {
+        path: "/shopping",
+        element: <MagazaPage />,
       },
     ],
   },
