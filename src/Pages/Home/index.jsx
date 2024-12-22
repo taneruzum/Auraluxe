@@ -6,6 +6,7 @@ import Trend from "@/Components/trend";
 import ProductCardsSwiper from "@/Components/ProductCardsSwiper";
 import Decor from "@/Components/Decor";
 import Decor2 from "@/Components/Decor2";
+import { HomeSliderImages } from "@/Constants/constImages";
 
 export default function HomePage() {
   const videoRef = useRef(null); // Video referansı
@@ -56,7 +57,7 @@ export default function HomePage() {
 
       <Showcase />
       <Trend />
-      <ProductCardsSwiper />
+      <ProductCardsSwiper imagePathProp={HomeSliderImages} />
       <Decor />
       <Decor2 />
     </div>

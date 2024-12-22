@@ -20,7 +20,7 @@ const Footer = () => {
       <footer className="bg-[#1F2937] py-16 text-white">
         <div className="container mx-auto px-6 lg:px-12">
           {/* Upper Section */}
-          <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 place-items-center text-center gap-12 md:grid-cols-2 md:place-items-start md:text-start  lg:grid-cols-4">
             {/* Logo and Description */}
             <div className="flex flex-col items-center md:items-start">
               <h3 className="mb-2 text-4xl font-extrabold">Auraluxe Jewelry</h3>
@@ -133,11 +133,11 @@ const Footer = () => {
             <p className="text-sm text-gray-400">
               © 2024 Auraluxe Jewelry. All rights reserved.
             </p>
-            <ul className="mt-4 flex space-x-6 md:mt-0">
+            <ul className="mt-4 flex items-center space-x-6 md:mt-0 *:text-xs *:xs:text-sm">
               <li>
                 <a
                   href="#"
-                  className="text-sm text-gray-300 transition duration-200 hover:text-white"
+                  className="text-gray-300 transition duration-200 hover:text-white"
                 >
                   Privacy Policy
                 </a>
@@ -145,7 +145,7 @@ const Footer = () => {
               <li>
                 <a
                   href="#"
-                  className="text-sm text-gray-300 transition duration-200 hover:text-white"
+                  className="text-gray-300 transition duration-200 hover:text-white"
                 >
                   Terms of Service
                 </a>
@@ -153,7 +153,7 @@ const Footer = () => {
               <li>
                 <a
                   href="#"
-                  className="text-sm text-gray-300 transition duration-200 hover:text-white"
+                  className="text-gray-300 transition duration-200 hover:text-white"
                 >
                   Cookie Preferences
                 </a>

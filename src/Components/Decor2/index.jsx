@@ -1,6 +1,6 @@
 export default function Index() {
   return (
-    <div className="w-full grid grid-cols-3 gap-6 ">
+    <div className="hidden w-full sm:grid grid-cols-3 gap-6 ">
       {/* Decor 2 */}
       <div className="max-w-[480px] w-full">
         <img

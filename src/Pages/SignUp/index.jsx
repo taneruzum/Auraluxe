@@ -3,13 +3,16 @@ const SignUp = () => {
     <div className="w-full flex items-center justify-center ">
       <div className="flex w-full max-w-screen-lg overflow-hidden bg-white rounded-lg  shadow-lg">
         {/* Sol Taraf: Görsel */}
-        
-        <figure className="w-full rounded-lg rounded-r-3xl overflow-hidden">
-          <img src="/decor/kayıt.jpg" alt="Kayıt Ol Yan Resim" />
+
+        <figure className="hidden sm:flex items-center justify-center w-full ">
+          <img
+            src="/decor/kayıt.jpg"
+            alt="Kayıt Ol Yan Resim"
+            className="rounded-lg rounded-r-3xl overflow-hidden" />
         </figure>
 
         {/* Sağ Taraf: Kayıt Ol Formu */}
-        <div className="flex w-full flex-col justify-center px-6">
+        <div className="flex w-full flex-col justify-center px-6 py-4">
           <h2 className="text-center text-4xl font-bold text-[#F1C6D1]">
             Sign Up
           </h2>

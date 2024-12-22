@@ -2,7 +2,7 @@ const HighJewelrySection = () => {
   return (
     <section className="w-full bg-white py-16">
         {/* Üst Başlık ve Görsel */}
-        <div className="flex flex-col items-center justify-between gap-8 lg:flex-row">
+        <div className="flex flex-col items-center justify-between gap-8 sm:flex-row">
           {/* Sol Resim */}
           <div className="max-w-[425px] w-full ">
             <img
