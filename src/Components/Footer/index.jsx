@@ -18,112 +18,114 @@ const Footer = () => {
       </svg>
 
       <footer className="bg-[#1F2937] py-16 text-white">
-        <div className="container mx-auto px-6 lg:px-12">
+        <div className="max-w-screen-xl 3xl:max-w-screen-2xl container mx-auto px-4 lg:px-8">
           {/* Upper Section */}
-          <div className="grid grid-cols-1 place-items-center text-center gap-12 md:grid-cols-2 md:place-items-start md:text-start  lg:grid-cols-4">
-            {/* Logo and Description */}
-            <div className="flex flex-col items-center md:items-start">
+          <section className="w-full flex flex-col lg:flex-row items-center justify-between gap-12">
+            <div className=" min-w-80 flex flex-col items-center">
               <h3 className="mb-2 text-4xl font-extrabold">Auraluxe Jewelry</h3>
               <p className="text-sm text-gray-400">
                 Discover timeless elegance with our exquisite collection.
               </p>
             </div>
+            <div className="w-full grid grid-cols-1 place-items-center text-center gap-12 md:grid-cols-3 md:place-items-start md:text-start  lg:grid-cols-4 ">
+              {/* Logo and Description */}
 
-            {/* Quick Links */}
-            <div className="flex flex-col space-y-4">
-              <h4 className="mb-2 text-lg font-semibold uppercase">About</h4>
-              <ul className="space-y-2">
-                <li>
-                  <a
-                    href="#"
-                    className="text-gray-300 transition duration-200 hover:text-white"
-                  >
-                    Our Company
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-gray-300 transition duration-200 hover:text-white"
-                  >
-                    Values
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-gray-300 transition duration-200 hover:text-white"
-                  >
-                    Careers
-                  </a>
-                </li>
-              </ul>
-            </div>
+              {/* Quick Links */}
+              <div className="flex flex-col space-y-4 lg:col-start-2">
+                <h4 className="mb-2 text-lg font-semibold uppercase">About</h4>
+                <ul className="space-y-2">
+                  <li>
+                    <a
+                      href="#"
+                      className="text-gray-300 transition duration-200 hover:text-white"
+                    >
+                      Our Company
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="text-gray-300 transition duration-200 hover:text-white"
+                    >
+                      Values
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="text-gray-300 transition duration-200 hover:text-white"
+                    >
+                      Careers
+                    </a>
+                  </li>
+                </ul>
+              </div>
 
-            {/* Customer Service Links */}
-            <div className="flex flex-col space-y-4">
-              <h4 className="mb-2 text-lg font-semibold uppercase">Help</h4>
-              <ul className="space-y-2">
-                <li>
-                  <a
-                    href="#"
-                    className="text-gray-300 transition duration-200 hover:text-white"
-                  >
-                    Contact Us
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-gray-300 transition duration-200 hover:text-white"
-                  >
-                    Track Orders
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-gray-300 transition duration-200 hover:text-white"
-                  >
-                    Returns
-                  </a>
-                </li>
-              </ul>
-            </div>
+              {/* Customer Service Links */}
+              <div className="flex flex-col space-y-4">
+                <h4 className="mb-2 text-lg font-semibold uppercase">Help</h4>
+                <ul className="space-y-2">
+                  <li>
+                    <a
+                      href="#"
+                      className="text-gray-300 transition duration-200 hover:text-white"
+                    >
+                      Contact Us
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="text-gray-300 transition duration-200 hover:text-white"
+                    >
+                      Track Orders
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="text-gray-300 transition duration-200 hover:text-white"
+                    >
+                      Returns
+                    </a>
+                  </li>
+                </ul>
+              </div>
 
-            {/* Social Media Links */}
-            <div className="flex flex-col space-y-4">
-              <h4 className="mb-2 text-lg font-semibold uppercase">
-                Follow Us
-              </h4>
-              <ul className="space-y-2">
-                <li>
-                  <a
-                    href="#"
-                    className="text-gray-300 transition duration-200 hover:text-white"
-                  >
-                    Instagram
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-gray-300 transition duration-200 hover:text-white"
-                  >
-                    Facebook
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-gray-300 transition duration-200 hover:text-white"
-                  >
-                    Twitter
-                  </a>
-                </li>
-              </ul>
+              {/* Social Media Links */}
+              <div className="flex flex-col space-y-4">
+                <h4 className="mb-2 text-lg font-semibold uppercase">
+                  Follow Us
+                </h4>
+                <ul className="space-y-2">
+                  <li>
+                    <a
+                      href="#"
+                      className="text-gray-300 transition duration-200 hover:text-white"
+                    >
+                      Instagram
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="text-gray-300 transition duration-200 hover:text-white"
+                    >
+                      Facebook
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="text-gray-300 transition duration-200 hover:text-white"
+                    >
+                      Twitter
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
-          </div>
+          </section>
 
           {/* Divider */}
           <div className="my-8 border-t border-gray-700"></div>

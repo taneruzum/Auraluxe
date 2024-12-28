@@ -1,4 +1,52 @@
-const SignIn = () => {
+import { UserLoginRequest } from "@/api";
+import { useState } from "react";
+
+export default function SignIn() {
+
+  const [loginFormData, setLoginFormData] = useState({
+    email: '',
+    password: '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setLoginFormData({
+      ...loginFormData,
+      [name]: value
+    });
+  };
+
+  const LoginFormControl = () => {
+    const { email, password } = loginFormData;
+    if (!email && !password) {
+      alert('E-posta ve şifre boş olamaz.');
+      return false;
+    }
+    if (!email) {
+      alert('E-posta boş olamaz.');
+      return false;
+    }
+    if (!password) {
+      alert('Şifre boş olamaz.');
+      return false;
+    }
+    return true;
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (LoginFormControl()) {
+      try {
+        const response = await UserLoginRequest(loginFormData);
+        alert('Giriş işlemi başarılı.');
+        // Giriş başarılı olduğunda yapılacak işlemler
+      } catch (error) {
+        alert('Giriş başarısız: ' + error.message);
+      }
+    }
+    return false;
+  }
+
   return (
     <div className=" w-full flex items-center justify-center ">
       <div className="flex w-full max-w-screen-lg overflow-hidden bg-white rounded-lg  shadow-lg">
@@ -19,33 +67,31 @@ const SignIn = () => {
             Welcome back! Please sign in to your account.
           </p>
 
-          <form className="mt-10 space-y-6">
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Email address
+          <form onSubmit={handleSubmit} className="mt-10 space-y-6">
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700" htmlFor="email">
+                Email
               </label>
               <input
                 type="email"
+                name="email"
                 id="email"
-                required
+                value={loginFormData.email}
+                onChange={handleChange}
                 className="mt-2 w-full rounded-lg border border-gray-300 px-5 py-4 text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
 
-            <div>
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium text-gray-700"
-              >
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700" htmlFor="password">
                 Password
               </label>
               <input
                 type="password"
+                name="password"
                 id="password"
-                required
+                value={loginFormData.password}
+                onChange={handleChange}
                 className="mt-2 w-full rounded-lg border border-gray-300 px-5 py-4 text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
@@ -68,6 +114,5 @@ const SignIn = () => {
       </div>
     </div>
   );
-};
+}
 
-export default SignIn;
