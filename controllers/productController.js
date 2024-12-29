@@ -26,18 +26,34 @@ exports.getProductById = async (req, res) => {
 };
 
 // Yeni Ürün Ekle
-// Yeni Ürün Ekle
 exports.addProduct = async (req, res) => {
-    const { name, price, description, image, stock, brand, category } = req.body;
+    const { name, price, description, stock, brand, category } = req.body;
+
+    let imageBase64 = null;
+
+    // Eğer resim dosyası varsa, Base64 formatına dönüştür
+    if (req.file) {
+        imageBase64 = req.file.buffer.toString('base64'); // Multer ile gelen dosyayı Base64'e dönüştür
+    }
 
     try {
-        const product = new Product({ name, price, description, image, stock, brand, category });
+        const product = new Product({
+            name,
+            price,
+            description,
+            image: imageBase64,  // Base64 formatında resim
+            stock,
+            brand,
+            category
+        });
+
         await product.save();
         res.status(201).json({ message: "Ürün başarıyla eklendi!", product });
     } catch (error) {
         res.status(500).json({ message: "Ürün ekleme işlemi başarısız oldu.", error });
     }
 };
+
 
 // Ürünleri Arama ve Filtreleme
 exports.searchProducts = async (req, res) => {
@@ -70,17 +86,34 @@ exports.searchProducts = async (req, res) => {
 // Ürünü Güncelle
 exports.updateProduct = async (req, res) => {
     const { id } = req.params;
-    const { name, price, description, image, stock, brand, category } = req.body;
+    const { name, price, description, stock, brand, category } = req.body;
+
+    let imageBase64 = null;
+
+    // Eğer resim dosyası varsa, Base64 formatına dönüştür
+    if (req.file) {
+        imageBase64 = req.file.buffer.toString('base64'); // Multer ile gelen dosyayı Base64'e dönüştür
+    }
 
     try {
         const product = await Product.findByIdAndUpdate(
             id,
-            { name, price, description, image, stock, brand, category },
+            {
+                name,
+                price,
+                description,
+                image: imageBase64,  // Base64 formatında resim
+                stock,
+                brand,
+                category
+            },
             { new: true, runValidators: true } // Yeni güncellenmiş ürünü döner, validasyonları çalıştırır
         );
+
         if (!product) {
             return res.status(404).json({ message: "Ürün bulunamadı!" });
         }
+
         res.json({ message: "Ürün başarıyla güncellendi!", product });
     } catch (error) {
         res.status(500).json({ message: "Ürün güncellenemedi!", error });
