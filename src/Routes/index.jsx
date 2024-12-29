@@ -4,6 +4,7 @@ import SignInPage from "@/Pages/Sign";
 import { createBrowserRouter } from "react-router-dom";
 import SignUpPage from "@/Pages/SignUp";
 import MagazaPage from "@/Pages/Magaza";
+import ProductDetailsPage from "@/Pages/ProductDetails";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "/shopping",
         element: <MagazaPage />,
+      },
+      {
+        path: "/product/:productId",
+        element: <ProductDetailsPage />,
       },
     ],
   },

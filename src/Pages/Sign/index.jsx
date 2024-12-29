@@ -1,8 +1,19 @@
 import { UserLoginRequest } from "@/api";
-import { useState } from "react";
+import { setCurrentAccount } from "@/lib/features/user/actions";
+import { useAccount } from "@/lib/features/user/hooks";
+import { useEffect, useState } from "react";
+import Cookies from 'js-cookie';
+import { useNavigate } from "react-router-dom";
+
 
 export default function SignIn() {
 
+  //const userSessios = useAccount();
+  // useEffect(() => {
+  //   console.log("Kullanıcı Bilgisi: ", userSessios);
+  // }, [userSessios]);
+
+  const navigate = useNavigate();
   const [loginFormData, setLoginFormData] = useState({
     email: '',
     password: '',
@@ -38,8 +49,11 @@ export default function SignIn() {
     if (LoginFormControl()) {
       try {
         const response = await UserLoginRequest(loginFormData);
+        setCurrentAccount(response.data.user);
+        Cookies.set('AuraluxeUserToken', response.data.token);
+        //console.log("Kullanıcı Bilgisi: ", response.data);
         alert('Giriş işlemi başarılı.');
-        // Giriş başarılı olduğunda yapılacak işlemler
+        navigate('/');
       } catch (error) {
         alert('Giriş başarısız: ' + error.message);
       }
