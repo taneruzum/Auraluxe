@@ -11,6 +11,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
+    "@mantine/core": "^7.15.2",
+    "@mantine/hooks": "^7.15.2",
     "@reduxjs/toolkit": "^1.9.7",
     "axios": "^1.7.9",
     "dotenv": "^16.4.7",

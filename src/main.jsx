@@ -4,9 +4,13 @@ import router from "./Routes";
 import "./index.css";
 import { store } from "./lib/store";
 import { Provider } from "react-redux";
+import { MantineProvider } from "@mantine/core";
+import '@mantine/core/styles.css';
 
 createRoot(document.getElementById("root")).render(
   <Provider store={store}>
-    <RouterProvider router={router} />
+    <MantineProvider>
+      <RouterProvider router={router} />
+    </MantineProvider>
   </Provider>,
 );

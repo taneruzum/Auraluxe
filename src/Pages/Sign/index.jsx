@@ -1,5 +1,5 @@
 import { UserLoginRequest } from "@/api";
-import { setCurrentAccount } from "@/lib/features/user/actions";
+import { userLogin } from "@/lib/features/user/actions";
 import { useAccount } from "@/lib/features/user/hooks";
 import { useEffect, useState } from "react";
 import Cookies from 'js-cookie';
@@ -49,7 +49,7 @@ export default function SignIn() {
     if (LoginFormControl()) {
       try {
         const response = await UserLoginRequest(loginFormData);
-        setCurrentAccount(response.data.user);
+        userLogin(response.data.user);
         Cookies.set('AuraluxeUserToken', response.data.token);
         //console.log("Kullanıcı Bilgisi: ", response.data);
         alert('Giriş işlemi başarılı.');
