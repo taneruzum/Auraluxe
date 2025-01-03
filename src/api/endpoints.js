@@ -4,9 +4,8 @@ const API_ENDPOINTS = {
     USERS: {
         LOGIN: '/api/auth/login',
         REGISTER: '/api/auth/register',
-        // GET_USER: '/user',
-        // UPDATE_USER: '/user',
-        // DELETE_USER: '/user',
+        UPDATE: '/api/auth/update',
+        //DELETE: '/api/auth/delete',
     },
     // ADMIN: {
     //     LOGIN: '/admin/login',
