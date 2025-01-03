@@ -49,26 +49,29 @@ exports.loginUser = async (req, res) => {
 };
 // Kullanıcı Bilgilerini Güncelle
 exports.updateUser = async (req, res) => {
-    const { name, email, password } = req.body;
-
-    try {
-        const user = await User.findById(req.user.id);
-        if (!user) {
-            return res.status(404).json({ message: "Kullanıcı bulunamadı." });
-        }
-
-        if (name) user.name = name;
-        if (email) user.email = email;
-        if (password) {
-            const salt = await bcrypt.genSalt(10);
-            user.password = await bcrypt.hash(password, salt);
-        }
-
-        const updatedUser = await user.save();
-        res.json({ message: "Kullanıcı bilgileri güncellendi.", user: updatedUser });
-    } catch (error) {
-        res.status(500).json({ message: "Kullanıcı bilgileri güncellenemedi.", error });
+    const user = await User.findById(req.user.id);
+    if (!user) {
+        res.status(404);
+        throw new Error("Kullanıcı bulunamadı.");
     }
+
+    // Kullanıcının kendi bilgilerini güncelleyip güncellemediğini kontrol et
+    if (user._id.toString() !== req.user.id) {
+        res.status(403);
+        throw new Error("Başka bir kullanıcının bilgilerini güncelleme yetkiniz yok.");
+    }
+
+    const updatedFields = {};
+    const { name, email, password } = req.body;
+    if (name) updatedFields.name = name;
+    if (email) updatedFields.email = email;
+    if (password) {
+        const salt = await bcrypt.genSalt(10);
+        updatedFields.password = await bcrypt.hash(password, salt);
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(req.user.id, updatedFields, { new: true });
+    res.status(200).json({ message: "Kullanıcı bilgileri güncellendi.", user: updatedUser });
 };
 
 // Kullanıcıyı Sil
