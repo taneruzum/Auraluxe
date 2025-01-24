@@ -3,3 +3,4 @@ npm i mongodb
 npm i mongoose
 npm i express
 npm i dotenv
+BACKEND'İ DOSYA YÜKLEMEYİ DESTEKLER HALE GETİRİN yani npm install multer

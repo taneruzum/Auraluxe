@@ -49,29 +49,61 @@ exports.loginUser = async (req, res) => {
 };
 // Kullanıcı Bilgilerini Güncelle
 exports.updateUser = async (req, res) => {
-    const user = await User.findById(req.user.id);
-    if (!user) {
-        res.status(404);
-        throw new Error("Kullanıcı bulunamadı.");
-    }
+    try {
+        const user = await User.findById(req.user.id);
+        if (!user) {
+            return res.status(404).json({ message: "Kullanıcı bulunamadı." });
+        }
 
-    // Kullanıcının kendi bilgilerini güncelleyip güncellemediğini kontrol et
-    if (user._id.toString() !== req.user.id) {
-        res.status(403);
-        throw new Error("Başka bir kullanıcının bilgilerini güncelleme yetkiniz yok.");
-    }
+        // Güncellenebilir alanları kontrol et
+        const { name, email, password, address, city, country } = req.body;
+        if (name) user.name = name;
+        if (email) user.email = email;
+        if (password) {
+            const salt = await bcrypt.genSalt(10);
+            user.password = await bcrypt.hash(password, salt);
+        }
+        if (address) user.address = address;
+        if (city) user.city = city;
+        if (country) user.country = country;
 
-    const updatedFields = {};
-    const { name, email, password } = req.body;
-    if (name) updatedFields.name = name;
-    if (email) updatedFields.email = email;
-    if (password) {
-        const salt = await bcrypt.genSalt(10);
-        updatedFields.password = await bcrypt.hash(password, salt);
+        // Güncellenmiş kullanıcıyı kaydet
+        const updatedUser = await user.save();
+        res.status(200).json({
+            message: "Kullanıcı bilgileri güncellendi.",
+            user: {
+                id: updatedUser.id,
+                name: updatedUser.name,
+                email: updatedUser.email,
+                address: updatedUser.address,
+                city: updatedUser.city,
+                country: updatedUser.country
+            }
+        });
+    } catch (error) {
+        res.status(500).json({ message: "Kullanıcı güncellenemedi.", error });
     }
+};
+exports.getUserProfile = async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id).select('-password'); // Şifreyi hariç tutuyoruz
+        if (!user) {
+            return res.status(404).json({ message: "Kullanıcı bulunamadı." });
+        }
 
-    const updatedUser = await User.findByIdAndUpdate(req.user.id, updatedFields, { new: true });
-    res.status(200).json({ message: "Kullanıcı bilgileri güncellendi.", user: updatedUser });
+        res.status(200).json({
+            user: {
+                id: user.id,
+                name: user.name,
+                email: user.email,
+                address: user.address,
+                city: user.city,
+                country: user.country
+            }
+        });
+    } catch (error) {
+        res.status(500).json({ message: "Kullanıcı bilgileri getirilemedi.", error });
+    }
 };
 
 // Kullanıcıyı Sil

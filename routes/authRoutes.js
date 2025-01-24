@@ -1,5 +1,5 @@
 const express = require('express');
-const { registerUser, loginUser, updateUser, deleteUser } = require('../controllers/authController');
+const { registerUser, loginUser, updateUser, deleteUser,getUserProfile} = require('../controllers/authController');
 const { protect } = require('../middlewares/authMiddleware'); // JWT doğrulama için
 const router = express.Router();
 
@@ -9,8 +9,10 @@ router.post('/register', registerUser);
 // Kullanıcı Girişi
 router.post('/login', loginUser);
 
+router.get('/profile', protect, getUserProfile);
+
 // Kullanıcı Bilgilerini Güncelle
-router.put('/update', protect, updateUser);
+router.put('/profile', protect, updateUser);
 
 // Kullanıcıyı Sil
 router.delete('/delete', protect, deleteUser);

@@ -5,6 +5,9 @@ const userSchema = new mongoose.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
+    address: { type: String, default: '' }, // Opsiyonel adres bilgisi
+    city: { type: String, default: '' },    // Opsiyonel şehir bilgisi
+    country: { type: String, default: '' }  // Opsiyonel ülke bilgisi
 });
 
 // Şifreyi kayıttan önce hash'ler
