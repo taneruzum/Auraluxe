@@ -14,6 +14,10 @@ const API_ENDPOINTS = {
     //     UPDATE_ADMIN: '/admin',
     //     DELETE_ADMIN: '/admin',
     // }
+    PRODUCT:{
+        ALL:'/api/products/',
+        
+    }
 };
 
 export default API_ENDPOINTS;

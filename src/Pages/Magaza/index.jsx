@@ -1,19 +1,46 @@
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import ProductCardsSwiper from "@/Components/ProductCardsSwiper";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Categories } from "@/Constants/constImages";
+import { useEffect, useState } from "react";
+import { getAllProducts } from "@/api/forProduct";
+import { formatPrice, getImageFromBase64 } from "@/utils";
+
+const famousBrands = [
+  "Gucci",
+  "Chanel",
+  "Prada",
+  "Cartier",
+  "Tiffany",
+  "Louis Vuitton",
+];
 
 export default function MagazaPage() {
-  const famousBrands = [
-    "Gucci",
-    "Chanel",
-    "Prada",
-    "Cartier",
-    "Tiffany",
-    "Louis Vuitton",
-  ];
+
+  const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await getAllProducts();
+        setProducts(response.data);
+        //console.log(response.data);
+        // Kategorileri belirle
+        const uniqueCategories = [...new Set(response.data.map(product => product.category))];
+        setCategories(uniqueCategories);
+        setLoading(false);
+      } catch (error) {
+        console.error('Ürünler alınamadı:', error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
 
   return (
     <div className="store-page-container mx-auto max-w-screen-xl px-4 py-8">
@@ -55,16 +82,39 @@ export default function MagazaPage() {
       </section>
 
       {/* Kategoriler Bölümü */}
-      <div className="flex w-full flex-col gap-12">
-        {Categories.map((category, index) => (
+      {loading ? (<div className="flex w-full flex-col gap-12">
+        {Array(3).fill().map((_, index) => (
           <section key={index} className="category-section">
             <h2 className="mb-4 text-2xl font-semibold uppercase text-gray-900">
-              {category.name}
+              <div className="h-6 bg-gray-300 rounded w-1/3 animate-pulse"></div>
             </h2>
-            <ProductCardsSwiper imagePathProp={category.images} />
+            <div className="flex gap-4">
+              {Array(4).fill().map((_, index) => (
+                <div key={index} className="w-full h-64 bg-gray-300 rounded animate-pulse"></div>
+              ))}
+            </div>
           </section>
         ))}
-      </div>
+      </div>) : (
+        <div className="flex w-full flex-col gap-12">
+          {categories.map((category, index) => (
+            <section key={index} className="category-section">
+              <h2 className="mb-4 text-2xl font-semibold uppercase text-gray-900">
+                {category}
+              </h2>
+              <ProductCardsSwiper
+                product={products
+                  .filter(product => product.category === category)
+                  .map(product => ({
+                    image: getImageFromBase64(product.image),
+                    name: product.name,
+                    price: formatPrice(product.price)
+                  }))}
+              />
+            </section>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

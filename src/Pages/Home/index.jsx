@@ -7,6 +7,8 @@ import ProductCardsSwiper from "@/Components/ProductCardsSwiper";
 import Decor from "@/Components/Decor";
 import Decor2 from "@/Components/Decor2";
 import { HomeSliderImages } from "@/Constants/constImages";
+import { formatPrice, getImageFromBase64 } from "@/utils";
+import { getAllProducts } from "@/api/forProduct";
 
 export default function HomePage() {
   const videoRef = useRef(null); // Video referansı
@@ -26,6 +28,25 @@ export default function HomePage() {
       });
     }
   }, [videoRef]);
+
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await getAllProducts();
+        const ringProducts = response.data.filter(product => product.category === "Yüzük");
+        setProducts(ringProducts);
+        setLoading(false);
+      } catch (error) {
+        console.error('Ürünler alınamadı:', error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
 
 
   return (
@@ -57,9 +78,27 @@ export default function HomePage() {
 
       <Showcase />
       <Trend />
-      <ProductCardsSwiper imagePathProp={HomeSliderImages} />
+      {loading ? (<div className="flex w-full flex-col gap-12">
+        {Array(1).fill().map((_, index) => (
+          <section key={index} className="category-section mt-12">
+            <div className="flex gap-4">
+              {Array(4).fill().map((_, index) => (
+                <div key={index} className="w-full h-64 bg-gray-300 rounded animate-pulse"></div>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>) : (
+        <ProductCardsSwiper
+          product={products.map(product => ({
+            image: getImageFromBase64(product.image),
+            name: product.name,
+            price: formatPrice(product.price)
+          }))}
+        />)}
       <Decor />
       <Decor2 />
     </div>
   );
 }
+

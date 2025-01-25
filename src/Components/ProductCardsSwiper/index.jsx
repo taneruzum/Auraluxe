@@ -6,7 +6,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { useEffect, useState } from "react";
 
-export default function ProductCardsSwiper({ imagePathProp }) {
+export default function ProductCardsSwiper({ product }) {
   const [slidesPerView, setSlidesPerView] = useState(4);
 
   useEffect(() => {
@@ -46,19 +46,19 @@ export default function ProductCardsSwiper({ imagePathProp }) {
       pagination={{ clickable: true }}
       className="mx-auto h-fit w-full max-w-screen-2xl py-12"
     >
-      {imagePathProp?.map((img, index) => (
+      {product?.map((product, index) => (
         <SwiperSlide key={index} className="sm:max-w-[360px] w-full h-full  ">
           <section className="h-full w-full ">
             <figure className="relative flex h-full w-full items-center justify-center">
               <img
-                src={img}
+                src={product.image}
                 alt={`Swiper Image ${index}`}
                 className="overflow-hidden rounded-sm aspect-square object-cover"
               />
             </figure>
             <div className="flex w-full flex-col items-center gap-2 px-2 py-3">
-              <h2>Ürün Başlığı</h2>
-              <p>Ürün Açıklaması</p>
+              <h2>{product.name}</h2>
+              <p>{product.price} TL</p>
               <button className="rounded-full bg-black/80 px-2.5 py-1 text-sm text-white">
                 Sepete Ekle
               </button>

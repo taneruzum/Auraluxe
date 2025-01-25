@@ -1,4 +1,4 @@
-import { UserLoginRequest } from "@/api";
+import { UserLoginRequest } from "@/api/forUser";
 import { userLogin } from "@/lib/features/user/actions";
 import { useAccount } from "@/lib/features/user/hooks";
 import { useEffect, useState } from "react";

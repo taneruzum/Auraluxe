@@ -1,4 +1,4 @@
-import { UserUpdateRequest } from "@/api";
+import { UserUpdateRequest } from "@/api/forUser";
 import React, { useState } from "react";
 import { Tabs } from "@mantine/core";
 import { useAccount } from "@/lib/features/user/hooks";

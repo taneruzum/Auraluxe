@@ -1,4 +1,4 @@
-import { UserRegisterRequest } from "@/api";
+import { UserRegisterRequest } from "@/api/forUser";
 import { useState } from "react";
 
 export default function SignUp() {
