@@ -5,6 +5,7 @@ import logo from "/logo.png";
 import { useAccount } from "@/lib/features/user/hooks";
 import { useEffect } from "react";
 import ProfileButton from "./ProfileButton";
+import BasketButton from "../BaskerDrawer";
 
 export default function NavBar() {
 
@@ -28,6 +29,7 @@ export default function NavBar() {
             type="text"
             name=""
             id=""
+            placeholder="Search..."
             className="w-full rounded-md border px-8 py-2 text-sm shadow outline-none"
           />
         </div>
@@ -39,18 +41,17 @@ export default function NavBar() {
 
         {/* Sağ Bölüm */}
         <section className="flex items-center gap-4 text-coalBlue">
-          <FaShoppingCart className="size-4" />
           {/* Navigasyon Linkleri */}
           <div className="flex items-center gap-4 ">
             <Link
               to={'/'}
-              className="px-2 py-1 text-sm text-coalBlue hover:text-black transition-colors"
+              className="px-4 py-2 rounded-md text-sm text-coalBlue hover:text-black hover:!bg-black/5 transition-colors"
             >
               Home
             </Link>
             <Link
               to={'/shopping'}
-              className="px-2 py-1 text-sm text-coalBlue hover:text-black transition-colors"
+              className="px-4 py-2 rounded-md text-sm text-coalBlue hover:text-black hover:!bg-black/5 transition-colors"
             >
               Shop
             </Link>
@@ -65,6 +66,7 @@ export default function NavBar() {
                 </button>
               </Link>
             )}
+            <BasketButton />
           </div>
         </section>
       </div>

@@ -91,6 +91,7 @@ export default function HomePage() {
       </div>) : (
         <ProductCardsSwiper
           product={products.map(product => ({
+            _id: product._id,
             image: getImageFromBase64(product.image),
             name: product.name,
             price: formatPrice(product.price)

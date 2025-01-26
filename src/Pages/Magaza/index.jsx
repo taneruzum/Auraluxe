@@ -106,6 +106,7 @@ export default function MagazaPage() {
                 product={products
                   .filter(product => product.category === category)
                   .map(product => ({
+                    _id: product._id,
                     image: getImageFromBase64(product.image),
                     name: product.name,
                     price: formatPrice(product.price)
@@ -113,6 +114,7 @@ export default function MagazaPage() {
               />
             </section>
           ))}
+
         </div>
       )}
     </div>
