@@ -4,9 +4,9 @@ const { protect } = require('../middlewares/authMiddleware');
 const router = express.Router();
 
 // Sipariş Oluştur
-router.post('/', protect, createOrder);
+router.post('/create', protect, createOrder);
 
 // Kullanıcının Siparişlerini Getir
-router.get('/', protect, getOrders);
+router.get('/all', protect, getOrders);
 
 module.exports = router;
