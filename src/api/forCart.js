@@ -68,7 +68,7 @@ export const handleIncreaseQuantityBackend = async (productId) => {
 export const handleDecrementQuantityBackend = async (productId) => {
     const token = Cookies.get('AuraluxeUserToken');
     try {
-        const response = await axios.delete(
+        const response = await axios.put(
             `${API_ENDPOINTS.BASE_URL}${API_ENDPOINTS.CART.DEC}`,
             { productId },
             {

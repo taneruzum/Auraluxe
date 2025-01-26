@@ -7,7 +7,7 @@ import { useSnackbar } from 'notistack';
 import { useAccount } from '@/lib/features/user/hooks';
 import { formatPrice, getImageFromBase64 } from '@/utils';
 import { useEffect, useState } from 'react';
-import { handleZeroQuantityBackend, handleIncreaseQuantityBackend } from '@/api/forCart';
+import { handleZeroQuantityBackend, handleIncreaseQuantityBackend, handleDecrementQuantityBackend } from '@/api/forCart';
 export default function BasketButton() {
 
     const userSession = useAccount();
@@ -45,10 +45,17 @@ export default function BasketButton() {
         ));
     };
 
-    const handleDecreaseQuantity = async (productId) => {
-        await handleZeroQuantityBackend(productId);
+    const handleDecrementQuantity = async (productId) => {
+        await handleDecrementQuantityBackend(productId);
         setBasketItems(prevItems => prevItems.map(item =>
             item.productId._id === productId ? { ...item, quantity: item.quantity - 1 } : item
+        ).filter(item => item.quantity > 0));
+    };
+
+    const handleClearQuantity = async (productId) => {
+        await handleZeroQuantityBackend(productId);
+        setBasketItems(prevItems => prevItems.map(item =>
+            item.productId._id === productId ? { ...item, quantity: item.quantity = 0 } : item
         ).filter(item => item.quantity > 0));
     };
 
@@ -64,7 +71,7 @@ export default function BasketButton() {
                                     <img src={getImageFromBase64(item.productId.image)} alt={item.productId.name} className="basket-item-image flex-shrink-0 w-16 h-16 object-cover" />
                                     <h3 className="text-wrap max-w-24 text-xs">{item.productId.name}</h3>
                                     <div className="basket-item-quantity flex items-center">
-                                        <button onClick={() => handleDecreaseQuantity(item.productId._id)} className="flex items-center justify-center  border border-gray-300 rounded-xl hover:bg-black/5">
+                                        <button onClick={() => handleDecrementQuantity(item.productId._id)} className="flex items-center justify-center  border border-gray-300 rounded-xl hover:bg-black/5">
                                             <IoRemoveOutline />
                                         </button>
                                         <span className="font-semibold mx-2">{item.quantity}</span>
