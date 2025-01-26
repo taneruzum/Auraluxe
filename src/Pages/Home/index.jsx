@@ -9,11 +9,14 @@ import Decor2 from "@/Components/Decor2";
 import { HomeSliderImages } from "@/Constants/constImages";
 import { formatPrice, getImageFromBase64 } from "@/utils";
 import { getAllProducts } from "@/api/forProduct";
+import { fetchAndSetBasketData } from "@/api/forCart";
+import { useAccount } from "@/lib/features/user/hooks";
 
 export default function HomePage() {
   const videoRef = useRef(null); // Video referansı
   const [isMuted, setIsMuted] = useState(true); // Mute durumu için state
 
+  const userSession = useAccount();
   const toggleMute = () => {
     if (videoRef.current) {
       videoRef.current.muted = !videoRef.current.muted; // Ses açma/kapama
@@ -47,6 +50,13 @@ export default function HomePage() {
     fetchProducts();
   }, []);
 
+
+  //SEPET VARSA GETİR
+  useEffect(() => {
+    if (userSession.authControl) {
+      fetchAndSetBasketData(userSession._id);
+    }
+  }, [userSession.authControl])
 
 
   return (

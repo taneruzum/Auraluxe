@@ -14,9 +14,15 @@ const API_ENDPOINTS = {
     //     UPDATE_ADMIN: '/admin',
     //     DELETE_ADMIN: '/admin',
     // }
-    PRODUCT:{
-        ALL:'/api/products/',
-        
+    CART: {
+        GET: '/api/cart/',
+        ADD: '/api/cart/add',
+        DEC: '/api/cart/decrease',
+        REMOVE: '/api/cart/remove',
+    },
+    PRODUCT: {
+        ALL: '/api/products/',
+
     }
 };
 

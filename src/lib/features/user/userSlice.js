@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   authControl: false,
+  _id: '',
   username: '',
   email: '',
   address: '',
@@ -16,6 +17,7 @@ const userSlice = createSlice({
   reducers: {
     login(state, action) {
       state.authControl = true;
+      state._id = action.payload.id;
       state.username = action.payload.name;
       state.email = action.payload.email;
       state.address = action.payload.address;
@@ -24,6 +26,7 @@ const userSlice = createSlice({
     },
     logout(state) {
       state.authControl = false;
+      state._id = '';
       state.username = '';
       state.email = '';
       state.address = '';

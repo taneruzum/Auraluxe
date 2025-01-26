@@ -5,7 +5,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { useEffect, useState } from "react";
-import { handleAddToBasket } from "@/lib/features/basket/actions";
+import { handleAddToBasketBackend } from "@/api/forCart";
+
 
 export default function ProductCardsSwiper({ product }) {
   const [slidesPerView, setSlidesPerView] = useState(4);
@@ -60,7 +61,7 @@ export default function ProductCardsSwiper({ product }) {
             <div className="flex w-full flex-col items-center gap-2 px-2 py-3">
               <h2 className="text-base xl:text-lg" >{product.name}</h2>
               <p className="text-sm xl:text-base">{product.price} TL</p>
-              <button onClick={() => handleAddToBasket(product)} className="rounded-full bg-black/80 px-4 py-2 text-sm text-white">
+              <button onClick={() => handleAddToBasketBackend(product)} className="rounded-full bg-black/80 px-4 py-2 text-sm text-white">
                 Sepete Ekle
               </button>
             </div>

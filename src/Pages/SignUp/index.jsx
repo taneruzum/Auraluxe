@@ -1,8 +1,10 @@
 import { UserRegisterRequest } from "@/api/forUser";
+import { useSnackbar } from "notistack";
 import { useState } from "react";
 
 export default function SignUp() {
 
+  const { enqueueSnackbar } = useSnackbar();
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -20,10 +22,15 @@ export default function SignUp() {
   const FormControl = () => {
     const { username, email, password, confirmPassword } = formData;
     if (!username || !email || !password || !confirmPassword) {
+      enqueueSnackbar("All fields are required. ", {
+        variant: "warning",
+      });
       return false;
     }
     if (password !== confirmPassword) {
-      alert('Şifreler uyuşmuyor.');
+      enqueueSnackbar("Passwords do not match. ", {
+        variant: "error",
+      });
       return false;
     }
     return true;
@@ -39,10 +46,6 @@ export default function SignUp() {
       setTimeout(() => {
         navigate('/signin');
       }, 2700);
-    } else {
-      enqueueSnackbar("Registration Failed! Check your informations. ", {
-        variant: "error",
-      });
     }
   };
 

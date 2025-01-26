@@ -1,12 +1,13 @@
 import { UserUpdateRequest } from "@/api/forUser";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Tabs } from "@mantine/core";
 import { useAccount } from "@/lib/features/user/hooks";
 import { useSnackbar } from "notistack";
+import { useNavigate } from "react-router-dom";
 
 export default function ProfilePage() {
   const userSession = useAccount();
-
+  const navigate = useNavigate();
   const [userDetails, setUserDetails] = useState({
     name: userSession.username || "",
     email: userSession.email || "",
@@ -77,6 +78,12 @@ export default function ProfilePage() {
       });
     }
   };
+
+  useEffect(() => {
+    if (userSession.authControl === false) {
+      navigate("/");
+    }
+  }, [userSession]);
 
   return (
     <div className="w-full p-4">

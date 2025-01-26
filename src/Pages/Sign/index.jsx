@@ -53,7 +53,7 @@ export default function SignIn() {
         const response = await UserLoginRequest(loginFormData);
         userLogin(response.data.user);
         Cookies.set('AuraluxeUserToken', response.data.token);
-        //console.log("Kullanıcı Bilgisi: ", response.data);
+        console.log("Kullanıcı Bilgisi (Login): ", response.data);
         enqueueSnackbar("You have successfully logged in.", {
           variant: "success",
         });

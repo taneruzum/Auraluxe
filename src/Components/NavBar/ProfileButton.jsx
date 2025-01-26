@@ -2,7 +2,7 @@ import { useAccount } from '@/lib/features/user/hooks';
 import { Button, Menu, MenuDivider } from '@mantine/core';
 import React, { useState } from 'react'
 import { FaUserCircle } from 'react-icons/fa'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { CiLogout } from "react-icons/ci";
 import { userLogout } from '@/lib/features/user/actions';
 import { useSnackbar } from 'notistack';
@@ -10,12 +10,14 @@ import { useSnackbar } from 'notistack';
 export default function ProfileButton() {
 
     const userSession = useAccount();
+    const navigate = useNavigate();
     const [opened, setOpened] = useState(false);
     const { enqueueSnackbar } = useSnackbar();
 
     const handleLogout = () => {
         userLogout();
         enqueueSnackbar('You have been logged out successfully.', { variant: 'info' });
+        navigate(0);
     };
 
     return (
