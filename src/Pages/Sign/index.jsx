@@ -4,6 +4,7 @@ import { useAccount } from "@/lib/features/user/hooks";
 import { useEffect, useState } from "react";
 import Cookies from 'js-cookie';
 import { useNavigate } from "react-router-dom";
+import { useSnackbar } from "notistack";
 
 
 export default function SignIn() {
@@ -14,6 +15,7 @@ export default function SignIn() {
   // }, [userSessios]);
 
   const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
   const [loginFormData, setLoginFormData] = useState({
     email: '',
     password: '',
@@ -52,10 +54,16 @@ export default function SignIn() {
         userLogin(response.data.user);
         Cookies.set('AuraluxeUserToken', response.data.token);
         //console.log("Kullanıcı Bilgisi: ", response.data);
-        alert('Giriş işlemi başarılı.');
-        navigate('/');
+        enqueueSnackbar("You have successfully logged in.", {
+          variant: "success",
+        });
+        setTimeout(() => {
+          navigate('/');
+        }, 2700);
       } catch (error) {
-        alert('Giriş başarısız: ' + error.message);
+        enqueueSnackbar("Your login attempt was unsuccessful.", {
+          variant: "error",
+        });
       }
     }
     return false;

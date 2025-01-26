@@ -5,11 +5,18 @@ import { FaUserCircle } from 'react-icons/fa'
 import { Link } from 'react-router-dom';
 import { CiLogout } from "react-icons/ci";
 import { userLogout } from '@/lib/features/user/actions';
+import { useSnackbar } from 'notistack';
 
 export default function ProfileButton() {
 
     const userSession = useAccount();
     const [opened, setOpened] = useState(false);
+    const { enqueueSnackbar } = useSnackbar();
+
+    const handleLogout = () => {
+        userLogout();
+        enqueueSnackbar('You have been logged out successfully.', { variant: 'info' });
+    };
 
     return (
         <Menu opened={opened} onChange={setOpened}>
@@ -40,7 +47,7 @@ export default function ProfileButton() {
                 <Menu.Item
                     color='red'
                     leftSection={<CiLogout className='size-4' />}
-                    onClick={userLogout}
+                    onClick={handleLogout}
                 >
                     Logout
                 </Menu.Item>

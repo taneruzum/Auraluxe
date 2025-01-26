@@ -2,6 +2,7 @@ import { UserUpdateRequest } from "@/api/forUser";
 import React, { useState } from "react";
 import { Tabs } from "@mantine/core";
 import { useAccount } from "@/lib/features/user/hooks";
+import { useSnackbar } from "notistack";
 
 export default function ProfilePage() {
   const userSession = useAccount();
@@ -10,8 +11,11 @@ export default function ProfilePage() {
     name: userSession.username || "",
     email: userSession.email || "",
     password: "",
+    address: userSession.address || '',
+    city: userSession.city || '',
+    country: userSession.country || '',
   });
-
+  const { enqueueSnackbar } = useSnackbar();
   const [activeTab, setActiveTab] = useState("user");
   const [favorites, setFavorites] = useState([
     {
@@ -63,9 +67,14 @@ export default function ProfilePage() {
     e.preventDefault();
     try {
       const response = await UserUpdateRequest(userDetails);
-      console.log("User updated successfully:", response);
+      enqueueSnackbar("User informations are updated.", {
+        variant: "success",
+      });
+
     } catch (error) {
-      console.error("Error updating user:", error);
+      enqueueSnackbar("Someting went wrong...", {
+        variant: "error",
+      });
     }
   };
 

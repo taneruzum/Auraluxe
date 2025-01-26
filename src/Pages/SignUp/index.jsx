@@ -33,9 +33,16 @@ export default function SignUp() {
     e.preventDefault();
     if (FormControl()) {
       UserRegisterRequest(formData);
-      alert('Kayıt işlemi başarılı.');
+      enqueueSnackbar("Registration Successful!", {
+        variant: "success",
+      });
+      setTimeout(() => {
+        navigate('/signin');
+      }, 2700);
     } else {
-      alert('Tüm alanları doldurunuz.');
+      enqueueSnackbar("Registration Failed! Check your informations. ", {
+        variant: "error",
+      });
     }
   };
 
