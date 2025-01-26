@@ -1,5 +1,5 @@
 const express = require('express');
-const { getCart, addToCart, removeFromCart } = require('../controllers/cartController');
+const { getCart, addToCart, removeFromCart,decrementFromCart } = require('../controllers/cartController');
 const { protect } = require('../middlewares/authMiddleware');
 const router = express.Router();
 
@@ -11,5 +11,7 @@ router.post('/add', protect, addToCart);
 
 // Sepetten Ürün Çıkar
 router.delete('/remove', protect, removeFromCart);
+
+router.put('/decrease', protect, decrementFromCart);
 
 module.exports = router;
